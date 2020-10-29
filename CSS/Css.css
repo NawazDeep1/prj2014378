@@ -1,4 +1,61 @@
-body{
-    background-color: red;
+body
+{
+    margin : 0;
+    background-color: cyan;
+    height: auto;
 }
-
+.navMenu
+{
+    background-color: black;
+    padding: 10px 0 10px 0;
+}
+ul
+{
+    display: inline-block;
+    list-style-type: none;
+    float: right;
+    padding: 40px 70px 40px 0;
+}
+a
+{
+    text-decoration: none;
+    color: cyan;
+}
+li a:hover
+{
+    opacity: 0.4;
+}
+li
+{
+    display: inline-block;
+    font-size: 18px;
+    padding: 0 20px;
+}
+.copyright
+{
+    text-align: center;
+    background-color: black;
+    color: cyan;
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    margin: 0;
+}
+.product_cycle
+{
+    width: 500px;
+    display: block;
+    margin: 0 auto 0 auto;
+    border: 5px solid red;
+}
+.product
+{
+    width: 400px;
+    display: block;
+    margin: 0 auto 0 auto;
+}
+.info
+{
+    width: 60%;
+    text-align: center;
+    margin: 20px auto 0 auto;
+}
