@@ -4,7 +4,7 @@ body
     background-color: cyan;
     height: auto;
 }
-.navMenu
+.nav
 {
     background-color: black;
     padding: 10px 0 10px 0;
@@ -40,6 +40,7 @@ li
     padding-bottom: 20px;
     margin: 0;
 }
+/*CSS for Home.php*/
 .product_cycle
 {
     width: 500px;
@@ -59,3 +60,4 @@ li
     text-align: center;
     margin: 20px auto 0 auto;
 }
+
