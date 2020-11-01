@@ -1,63 +1,67 @@
 body
 {
-    margin : 0;
-    background-color: cyan;
+    background-color: yellowgreen;
     height: auto;
 }
+
 .nav
 {
-    background-color: black;
-    padding: 10px 0 10px 0;
+    font-weight: bold;
+    color: brown; 
 }
+
 ul
 {
     display: inline-block;
-    list-style-type: none;
     float: right;
-    padding: 40px 70px 40px 0;
 }
-a
-{
-    text-decoration: none;
-    color: cyan;
-}
-li a:hover
-{
-    opacity: 0.4;
-}
+
 li
 {
     display: inline-block;
-    font-size: 18px;
-    padding: 0 20px;
+    font-size: 20px;
+    padding: 0 15px;
 }
 .copyright
 {
     text-align: center;
     background-color: black;
-    color: cyan;
-    padding-top: 20px; 
-    padding-bottom: 20px;
-    margin: 0;
+    color: red;
+    padding-top: 15px; 
+    padding-bottom: 10px;
 }
-/*CSS for Home.php*/
+
+/*-----For Home-------*/
+
 .product_cycle
 {
-    width: 500px;
+    width: 400px;
     display: block;
-    margin: 0 auto 0 auto;
-    border: 5px solid red;
+    border: 2px solid ;
 }
 .product
 {
-    width: 400px;
+    width: 300px;
     display: block;
     margin: 0 auto 0 auto;
 }
 .info
 {
-    width: 60%;
     text-align: center;
-    margin: 20px auto 0 auto;
 }
+
+/*------For Buy--------*/
+.buy
+{
+    width: 80%;
+    text-align: center;
+    margin: auto;
+}
+
+.req
+{
+    color: red;
+}
+
+/*------For Order--------*/
 

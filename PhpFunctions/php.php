@@ -18,6 +18,9 @@ define("COMPUTER_3",IMAGESFOLDER."lenovo.jpg");
 define("COMPUTER_4",IMAGESFOLDER."microsoft.jpg");
 define("COMPUTER_5",IMAGESFOLDER."vortex.jpg");
 
+//defineing  textfile
+define("TXTFILE","file.txt");
+
 $items= array(COMPUTER_1, COMPUTER_2, COMPUTER_3, COMPUTER_4, COMPUTER_5);
 
 function pageHeader($heading)
