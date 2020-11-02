@@ -42,6 +42,7 @@ function pageHeader($heading)
     <body>
     <?php
      }
+     //HTML
     function Footer()
     {
         copyright();
@@ -50,11 +51,12 @@ function pageHeader($heading)
     </html>   
     <?php
     }
-    
+    //LOGO function
     function Logo()
     {
         echo '<a href = "'.MAIN.'"><img src = "'.LOGO.'" height = "100px" width = "200px" class="logo1"></a>';
     }
+    //navigation menu
     function Menu()
     {
         echo '<div class = "nav">';
@@ -66,6 +68,7 @@ function pageHeader($heading)
         echo '</ul>';
         echo '</div>';
     }
+    //copyright
     function copyright()
     {
         echo '<br><p class = "copyright">Copyright NAWAZ DEEP SINGH (2014378) '.date('Y').'</p>';

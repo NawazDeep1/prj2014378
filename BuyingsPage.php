@@ -22,6 +22,7 @@
     $price = "";
     $quantity = "";
     
+    //declaring error message variable
     $productIdErrorMsg = "";
     $fnameErrorMsg = "";
     $lameErrorMsg = "";
@@ -135,11 +136,11 @@
         if($productIdErrorMsg =="" && $fnameErrorMsg=="" && $lameErrorMsg=="" && $cityErrorMsg=="" && $commentErrorMsg=="" && $priceErrorMsg=="" && $quantityErrorMsg=="")
         {
              $subtotal = $price * $quantity;
-            $taxes = $subtotal * 12.05/100;
+            $taxes = $subtotal * 12.05/100; // calculating taxes
             $grandTotal = $subtotal + $taxes;
             $purchase = array($productid, $fname, $lname, $city, $comment, $price, $quantity, $subtotal, $taxes, $grandTotal);
             file_put_contents(TXTFILE, json_encode($purchase)."\r\n",FILE_APPEND);
-                        
+                        // clearing variables
             $productid="";
             $fname = "";
             $lname = "";
@@ -151,6 +152,8 @@
     }
     
     ?>
+
+
 
 <div class="buy">
 <h1>Please fill the Following :</h1>
