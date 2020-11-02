@@ -9,7 +9,7 @@ define("LOGO",IMAGESFOLDER."logo1.png");
 //defining the main pages 
 define("MAIN","Homepage.php");
 define("CART","BuyingsPage.php");
-define("ORDER","Orderspage");
+define("ORDER","Orderspage.php");
 
 // defining the products in image folder
 define("COMPUTER_1",IMAGESFOLDER."asus.jpg");
@@ -18,8 +18,14 @@ define("COMPUTER_3",IMAGESFOLDER."lenovo.jpg");
 define("COMPUTER_4",IMAGESFOLDER."microsoft.jpg");
 define("COMPUTER_5",IMAGESFOLDER."vortex.jpg");
 
-//defineing  textfile
-define("TXTFILE","file.txt");
+//defining  textfile
+define("TXTFILE","purchases.txt");
+
+define("CHEAT","CheatSheet.txt");
+define("ERRORFOLDER","Errors/");
+define("ERROR",ERRORFOLDER."Errors.txt");
+define("EXCEPTION",ERRORFOLDER."Exceptions.txt");
+
 
 $items= array(COMPUTER_1, COMPUTER_2, COMPUTER_3, COMPUTER_4, COMPUTER_5);
 
@@ -33,9 +39,9 @@ function pageHeader($heading)
         <title><?php echo $heading;?></title>
         <link rel="stylesheet" type="text/css" href ="<?php echo CSSFILE;?>">
     </head>
-    <body> 
+    <body>
     <?php
-    }
+     }
     function Footer()
     {
         copyright();

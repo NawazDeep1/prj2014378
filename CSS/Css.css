@@ -3,7 +3,14 @@ body
     background-color: yellowgreen;
     height: auto;
 }
-
+.clsBody
+{
+    background-color: white;
+}
+.clsBody img
+{
+    opacity: 0.3;
+}
 .nav
 {
     font-weight: bold;
@@ -65,3 +72,43 @@ li
 
 /*------For Order--------*/
 
+.Orders
+{
+    border: 1px solid black;
+    width : 80%;
+    margin: 20px auto 0 auto;
+}
+.tableOrd
+{
+    width: 100%;
+    text-align: center;
+}
+.tableOrd th
+{
+    font-size: 18px;
+}
+.sTRED
+{
+    color: red;
+}
+.sTLOrange
+{
+    color:orangered;
+}
+.sTGreen
+{
+    color: green;
+}
+.cheatSheet a
+{
+    color: brown;
+}
+.cheatSheet a:hover
+{
+    color: black;
+}
+.cheatSheet
+{
+    text-align: center;
+  
+}

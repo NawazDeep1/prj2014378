@@ -1,0 +1,595 @@
+PHP
+<!DOCTYPE html>
+<html>
+<body>
+<h1>My first PHP page</h1>
+<?php
+echo "Hello World!";
+?>
+</body>
+</html>
+
+•	keywords (e.g. if, else, while, echo, etc.), classes, functions, and user-defined functions are not case-sensitive.
+•	However; all variable names are case-sensitive! ($color, $CoLOr, $COLOR all are different)
+•	PHP echo statement is often used to output data to the screen. The following example will show how to output text and a variable:
+Example 1
+<?php
+$txt = "Schools ";
+echo "I love $txt!";
+?>
+The following example will produce the same output as the example above:
+Example 2
+<?php
+$txt = "Schools ";
+echo "I love " . $txt . "!";
+?>
+Example3
+<?php
+$x = 5;
+$y = 4;
+echo $x + $y;
+?>
+Global and Local Scope - A variable declared outside a function has a GLOBAL SCOPE and can only be accessed outside a function:
+Example - Variable with global scope:
+<?php
+$x = 5; // global scope
+function myTest() {
+  // using x inside this function will generate an error
+  echo "<p>Variable x inside function is: $x</p>";
+}
+myTest();
+echo "<p>Variable x outside function is: $x</p>";
+?>
+Example
+<?php
+$x = 5;
+$y = 10; 
+function myTest() {
+  global $x, $y;
+  $y = $x + $y;
+}
+myTest();
+echo $y; // outputs 15
+?>
+
+•	A variable declared within a function has a LOCAL SCOPE and can only be accessed within that function:
+Example - Variable with local scope:
+<?php
+function myTest() {
+  $x = 5; // local scope
+  echo "<p>Variable x inside function is: $x</p>";
+}
+myTest();
+// using x outside the function will generate an error
+echo "<p>Variable x outside function is: $x</p>";
+?>
+•	You can have local variables with the same name in different functions, because local variables are only recognized by the function in which they are declared.
+The static Keyword
+Normally, when a function is completed/executed, all of its variables are deleted. However, sometimes we want a local variable NOT to be deleted. We need it for a further job.
+To do this, use the static keyword when you first declare the variable:
+Example
+<?php
+function myTest() {
+  static $x = 0;
+  echo $x;
+  $x++;
+}
+myTest();
+myTest();
+myTest();
+?>
+•	ECHO AND PRINT are more or less the same. They are both used to output data to the screen.
+The differences are small: echo has no return value while print has a return value of 1 so it can be used in expressions. echo can take multiple parameters (although such usage is rare) while print can take one argument. echo is marginally faster than print.
+•	
+•	PHP var_dump() function returns the data type and value:
+Example
+<?php
+$x = 5985;
+var_dump($x);
+?>
+
+PHP supports the following data types:
+•	String
+•	Integer
+•	Float (floating point numbers - also called double)
+•	Boolean
+•	Array
+•	Object
+•	NULL
+•	
+	strlen() - Return the Length of a String
+The PHP strlen() function returns the length of a string.
+Example
+Return the length of the string "Hello world!":
+<?php
+echo strlen("Hello world!"); // outputs 12
+?>
+
+	str_word_count() - Count Words in a String
+The PHP str_word_count() function counts the number of words in a string.
+Example
+Count the number of word in the string "Hello world!":
+<?php
+echo str_word_count("Hello world!"); // outputs 2
+?>
+
+	strrev() - Reverse a String
+The PHP strrev() function reverses a string.
+Example
+Reverse the string "Hello world!":
+<?php
+echo strrev("Hello world!"); // outputs !dlrow olleH
+?>
+	strpos() - Search For a Text Within a String
+The PHP strpos() function searches for a specific text within a string. If a match is found, the function returns the character position of the first match. If no match is found, it will return FALSE.
+Example
+Search for the text "world" in the string "Hello world!":
+<?php
+echo strpos("Hello world!", "world"); // outputs 6
+?>
+	str_replace() - Replace Text Within a String
+str_replace() function replaces some characters with some other characters in a string.
+Example
+Replace the text "world" with "Dolly":
+<?php
+echo str_replace("world", "Dolly", "Hello world!"); // outputs Hello Dolly!
+?>
+
+	PHP has the following functions to check if the type of a variable is integer:
+•	is_int()
+•	is_integer() - alias of is_int()
+•	is_long() - alias of is_int()
+Example
+Check if the type of a variable is integer:
+<?php
+$x = 5985;
+var_dump(is_int($x));
+
+$x = 59.85;
+var_dump(is_int($x));
+?>
+
+	PHP has the following functions to check if the type of a variable is float:
+•	is_float()
+•	is_double() - alias of is_float()
+Example
+Check if the type of a variable is float:
+<?php
+$x = 10.365;
+var_dump(is_float($x));
+?>
+
+The pi() function returns the value of PI:
+Example
+<?php
+echo(pi()); // returns 3.1415926535898
+?>
+	PHP min() and max() Functions
+The min() and max() functions can be used to find the lowest or highest value in a list of arguments:
+Example
+<?php
+echo(min(0, 150, 30, 20, -8, -200));  // returns -200
+echo(max(0, 150, 30, 20, -8, -200));  // returns 150
+?>________________________________________
+	PHP abs() Function
+The abs() function returns the absolute (positive) value of a number:
+Example
+<?php
+echo(abs(-6.7));  // returns 6.7
+?>
+
+	PHP sqrt() Function
+The sqrt() function returns the square root of a number:
+Example
+<?php
+echo(sqrt(64));  // returns 8
+?>
+
+	PHP round() Function
+The round() function rounds a floating-point number to its nearest integer:
+Example
+<?php
+echo(round(0.60));  // returns 1
+echo(round(0.49));  // returns 0
+?>
+
+	Random Numbers
+The rand() function generates a random number:
+Example
+<?php
+echo(rand());
+?>
+
+To get more control over the random number, you can add the optional min and max parameters to specify the lowest integer and the highest integer to be returned.
+For example, if you want a random integer between 10 and 100 (inclusive), use rand(10, 100):
+Example
+<?php
+echo(rand(10, 100));
+?>
+
+
+	PHP Casting Strings and Floats to Integers
+Sometimes you need to cast a numerical value into another data type.
+The (int), (integer), or intval() function are often used to convert a value to an integer.
+Example
+Cast float and string to integer:
+<?php
+// Cast float to int
+$x = 23465.768;
+$int_cast = (int)$x;
+echo $int_cast;
+
+echo "<br>";
+
+// Cast string to int
+$x = "23465.768";
+$int_cast = (int)$x;
+echo $int_cast;
+?>
+
+	Create a PHP Constant
+To create a constant, use the define() function.
+Syntax
+define(name, value, case-insensitive)
+Parameters:
+•	name: Specifies the name of the constant
+•	value: Specifies the value of the constant
+•	case-insensitive: Specifies whether the constant name should be case-insensitive. Default is false
+Example
+Create a constant with a case-sensitive name:
+<?php
+define("GREETING", "Welcome to W3Schools.com!");
+echo GREETING;
+?>
+Example
+Create a constant with a case-insensitive name:
+<?php
+define("GREETING", "Welcome to W3Schools.com!", true);
+echo greeting;
+?>
+
+	PHP Constant Arrays
+In PHP7, you can create an Array constant using the define() function.
+Example
+Create an Array constant:
+<?php
+define("cars", [
+  "Alfa Romeo",
+  "BMW",
+  "Toyota"
+]);
+echo cars[0];
+?> output – Alfa Romeo________________________________________
+	Constants are Global
+Constants are automatically global and can be used across the entire script.
+Example
+This example uses a constant inside a function, even if it is defined outside the function:
+<?php
+define("GREETING", "Welcome to school!");
+function myTest() {
+  echo GREETING;
+}
+myTest();
+?>  //Output Welcome to school!
+
+
+%	Modulus	$x % $y	Remainder of $x divided by $y	Try it »
+
+**	Exponentiation	$x ** $y	Result of raising $x to the $y'th power	
+
+x %= y	x = x % y	Modulus
+==	Equal	$x == $y	Returns true if $x is equal to $y	Try it »
+
+===	Identical	$x === $y	Returns true if $x is equal to $y, and they are of the same type	
+<>	Not equal	$x <> $y	Returns true if $x is not equal to $y	Try it »
+
+!==	Not identical	$x !== $y	Returns true if $x is not equal to $y, or they are not of the same type	
+.	Concatenation	$txt1 . $txt2	Concatenation of $txt1 and $txt2
+PHP Conditional Assignment Operators
+The PHP conditional assignment operators are used to set a value depending on conditions:
+?:	Ternary	$x = expr1 ? expr2 : expr3	Returns the value of $x.
+The value of $x is expr2 if expr1 = TRUE.
+The value of $x is expr3 if expr1 = FALSE	Try it »
+
+??	Null coalescing	$x = expr1 ?? expr2	Returns the value of $x.  The value of $x is expr1 if expr1 exists, and is not NULL.
+If expr1 does not exist, or is NULL, the value of $x is expr2.
+Introduced in PHP 7	Try it »
+
+
+	PHP - The if...elseif...else Statement
+The if...elseif...else statement executes different codes for more than two conditions.
+Syntax
+if (condition) {
+  code to be executed if this condition is true;
+} elseif (condition) {
+  code to be executed if first condition is false and this condition is true;
+} else {
+  code to be executed if all conditions are false;
+}
+Example
+Output "Have a good morning!" if the current time is less than 10, and "Have a good day!" if the current time is less than 20. Otherwise it will output "Have a good night!":
+<?php
+$t = date("H");
+if ($t < "10") {
+  echo "Have a good morning!";
+} elseif ($t < "20") {
+  echo "Have a good day!";
+} else {
+  echo "Have a good night!";
+}
+?>
+
+	The PHP switch Statement
+Use the switch statement to select one of many blocks of code to be executed.
+Syntax
+switch (n) {
+  case label1:
+    code to be executed if n=label1;
+    break;
+  case label2:
+    code to be executed if n=label2;
+    break;
+  case label3:
+    code to be executed if n=label3;
+    break;
+    ...
+  default:
+    code to be executed if n is different from all labels;
+}
+This is how it works: First we have a single expression n (most often a variable), that is evaluated once. The value of the expression is then compared with the values for each case in the structure. If there is a match, the block of code associated with that case is executed. Use break to prevent the code from running into the next case automatically. The default statement is used if no match is found.
+Example
+<?php
+$favcolor = "red";
+switch ($favcolor) {
+  case "red":
+    echo "Your favorite color is red!";
+    break;
+  case "blue":
+    echo "Your favorite color is blue!";
+    break;
+  case "green":
+    echo "Your favorite color is green!";
+    break;
+  default:
+    echo "Your favorite color is neither red, blue, nor green!";
+}
+?>
+
+In PHP, we have the following loop types:
+•	while - loops through a block of code as long as the specified condition is true
+•	do...while - loops through a block of code once, and then repeats the loop as long as the specified condition is true
+•	for - loops through a block of code a specified number of times
+•	foreach - loops through a block of code for each element in an array
+	while Loop and Do While Loop
+The while loop executes a block of code as long as the specified condition is true.
+Syntax
+while (condition is true) {
+  code to be executed;
+}
+Examples
+The example below displays the numbers from 1 to 5:
+Example
+<?php
+$x = 1;
+
+while($x <= 5) {
+  echo "The number is: $x <br>";
+  $x++;
+}
+?>
+
+	do...while 
+loop will always execute the block of code once, it will then check the condition, and repeat the loop while the specified condition is true.
+Syntax
+do {
+  code to be executed;
+} while (condition is true);
+Examples
+The example below first sets a variable $x to 1 ($x = 1). Then, the do while loop will write some output, and then increment the variable $x with 1. Then the condition is checked (is $x less than, or equal to 5?), and the loop will continue to run as long as $x is less than, or equal to 5:
+Example
+<?php
+$x = 1;
+
+do {
+  echo "The number is: $x <br>";
+  $x++;
+} while ($x <= 5);
+?>
+Note: In a do...while loop the condition is tested AFTER executing the statements within the loop. This means that the do...while loop will execute its statements at least once, even if the condition is false
+
+	For Loop
+The for loop is used when you know in advance how many times the script should run.
+Syntax
+for (init counter; test counter; increment counter) {
+  code to be executed for each iteration;
+}
+Parameters:
+•	init counter: Initialize the loop counter value
+•	test counter: Evaluated for each loop iteration. If it evaluates to TRUE, the loop continues. If it evaluates to FALSE, the loop ends.
+•	increment counter: Increases the loop counter value
+Examples
+The example below displays the numbers from 0 to 10:
+Example
+<?php
+for ($x = 0; $x <= 10; $x++) {
+  echo "The number is: $x <br>";
+}
+?>
+	The PHP foreach Loop
+The foreach loop works only on arrays, and is used to loop through each key/value pair in an array.
+Syntax
+foreach ($array as $value) {
+  code to be executed;
+}
+For every loop iteration, the value of the current array element is assigned to $value and the array pointer is moved by one, until it reaches the last array element.
+Examples
+The following example will output the values of the given array ($colors):
+Example
+<?php
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $value) {
+  echo "$value <br>";
+}
+?>
+
+The following example will output both the keys and the values of the given array ($age):
+Example
+<?php
+$age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+foreach($age as $x => $val) {
+  echo "$x = $val<br>";
+}
+?>
+	PHP Break
+You have already seen the break statement used in an earlier chapter of this tutorial. It was used to "jump out" of a switch statement.
+The break statement can also be used to jump out of a loop.
+This example jumps out of the loop when x is equal to 4:
+Example
+<?php
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    break;
+  }
+  echo "The number is: $x <br>";
+}
+?>
+
+	PHP Continue
+The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+This example skips the value of 4:
+Example
+<?php
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    continue;
+  }
+  echo "The number is: $x <br>";
+}
+?>
+
+	Break and Continue in While Loop
+You can also use break and continue in while loops:
+Break Example
+<?php
+$x = 0;
+
+while($x < 10) {
+  if ($x == 4) {
+    break;
+  }
+  echo "The number is: $x <br>";
+  $x++;
+}
+?>
+Continue Example
+<?php
+$x = 0;
+
+while($x < 10) {
+  if ($x == 4) {
+    $x++;
+    continue;
+  }
+  echo "The number is: $x <br>";
+  $x++;
+}
+?>
+
+PHP User Defined Functions
+Besides the built-in PHP functions, it is possible to create your own functions.
+•	A function is a block of statements that can be used repeatedly in a program.
+•	A function will not execute automatically when a page loads.
+•	A function will be executed by a call to the function.
+Syntax
+function functionName() {
+  code to be executed;
+}
+•	Note: A function name must start with a letter or an underscore. Function names are NOT case-sensitive.
+Example
+<?php
+function familyName($fname) {
+  echo "$fname Refsnes.<br>";
+}
+familyName("Jani");
+familyName("Hege");
+familyName("Stale");
+familyName("Kai Jim");
+familyName("Borge");
+?>
+Example
+<?php
+function familyName($fname, $year) {
+  echo "$fname Refsnes. Born in $year <br>";
+}
+familyName("Hege", "1975");
+familyName("Stale", "1978");
+familyName("Kai Jim", "1983");
+?>
+Example
+<?php declare(strict_types=1); // strict requirement
+function sum(int $x, int $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5, 10) . "<br>";
+echo "7 + 13 = " . sum(7, 13) . "<br>";
+echo "2 + 4 = " . sum(2, 4);
+?>
+Example
+Use a pass-by-reference argument to update a variable:
+<?php
+function add_five(&$value) {
+  $value += 5;
+}
+
+$num = 2;
+add_five($num);
+echo $num;
+?>
+Example
+<?php declare(strict_types=1); // strict requirement
+function addNumbers(float $a, float $b) : float {
+  return $a + $b;
+}
+echo addNumbers(1.2, 5.2);
+?>
+You can specify a different return type, than the argument types, but make sure the return is the correct type:
+Example
+<?php declare(strict_types=1); // strict requirement
+function addNumbers(float $a, float $b) : int {
+  return (int)($a + $b);
+}
+echo addNumbers(1.2, 5.2);
+?>
+
+What is an Array?
+An array is a special variable, which can hold more than one value at a time.
+If you have a list of items (a list of car names, for example), storing the cars in single variables could look like this:
+$cars1 = "Volvo";
+$cars2 = "BMW";
+$cars3 = "Toyota";
+However, what if you want to loop through the cars and find a specific one? And what if you had not 3 cars, but 300?
+The solution is to create an array!
+An array can hold many values under a single name, and you can access the values by referring to an index number.
+________________________________________
+Create an Array in PHP
+In PHP, the array() function is used to create an array:
+array();
+In PHP, there are three types of arrays:
+•	Indexed arrays - Arrays with a numeric index
+•	Associative arrays - Arrays with named keys
+•	Multidimensional arrays - Arrays containing one or more arrays
+count() function is used to return the length (the number of elements) of an array:
+Example
+<?php
+$cars = array("Volvo", "BMW", "Toyota");
+echo count($cars);
+?>
+
+
+
+
+

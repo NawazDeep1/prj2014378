@@ -50,9 +50,9 @@
         {
             $productIdErrorMsg = "Cannot be empty";
         }
-        else if(stripos($productid,"A") === false || stripos($productid, "a")!=0)
+        else if(stripos($productid,"p") === false || stripos($productid, "P ")!=0)
         {
-            $productIdErrorMsg = "ID must begin with A or a";
+            $productIdErrorMsg = "ID must begin with p or P";
         }
         
         if(mb_strlen($fname) > LENGHTOFFIRSTNAME)
@@ -134,6 +134,12 @@
         
         if($productIdErrorMsg =="" && $fnameErrorMsg=="" && $lameErrorMsg=="" && $cityErrorMsg=="" && $commentErrorMsg=="" && $priceErrorMsg=="" && $quantityErrorMsg=="")
         {
+             $subtotal = $price * $quantity;
+            $taxes = $subtotal * 12.05/100;
+            $grandTotal = $subtotal + $taxes;
+            $purchase = array($productid, $fname, $lname, $city, $comment, $price, $quantity, $subtotal, $taxes, $grandTotal);
+            file_put_contents(TXTFILE, json_encode($purchase)."\r\n",FILE_APPEND);
+                        
             $productid="";
             $fname = "";
             $lname = "";
