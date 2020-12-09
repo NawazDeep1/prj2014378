@@ -11,9 +11,9 @@ define("MAIN","Homepage.php");
 define("CART","BuyingsPage.php");
 define("ORDER","Orderspage.php");
 
-define("REGISTER","Registerpage.php");
-define("LOGIN","Loginpage.php");
-define("ACCOUNT","Accountpage.php");
+define("REGISTER","RegisterPage.php");
+define("LOGIN","LoginPage.php");
+define("ACCOUNT","AccountPage.php");
 
 // defining the products in image folder
 define("COMPUTER_1",IMAGESFOLDER."asus.jpg");
@@ -37,9 +37,17 @@ define("CLASSPRODUCT1",PHPFUNCTIONFOLDER."product1.php");
 define("CLASSPRODUCT2",PHPFUNCTIONFOLDER."product2.php");
 define("CLASSPURCHASE1",PHPFUNCTIONFOLDER."purchase1.php");
 define("CLASSPURCHASE2",PHPFUNCTIONFOLDER."purchase1.php");
-define("PURCHASES","purchasespage.php");
-define("BUY","buypage.php");
+
+//deinfing some new php pages
+define("PURCHASES","PurchasesPage.php");
+define("SEARCH","SearchPurchasesPage.php");
+define("CART2","Buyingpage2.php");
+define("COLLECTIONCLASS", "Collection.php");
+
+//defining data connection
 define("DATABASEFILE","DataConnection.php");
+
+
 $items= array(COMPUTER_1, COMPUTER_2, COMPUTER_3, COMPUTER_4, COMPUTER_5);
 
 function pageHeader($heading)
@@ -87,7 +95,7 @@ function pageHeader($heading)
         echo '<li><a href = "'.REGISTER.'">Register</a></li>';
         echo '<li><a href = "'.LOGIN.'">Login</a></li>';
         echo '<li><a href = "'.ACCOUNT.'">Account</a></li>';
-        echo '<li><a href = "'.BUY.'">Buy</a></li>';
+        echo '<li><a href = "'.CART2.'">Buy</a></li>';
         echo '<li><a href = "'.PURCHASES.'">Purchases</a></li>';
         
         echo '</ul>';

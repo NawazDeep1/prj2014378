@@ -1,13 +1,13 @@
 <?php
 require_once ('DatabaseConnection.php');
- define("FIRSTNAME_LENGTH",20);
-    define("LASTNAME_LENGTH",20);
-    define("ADDRESS_LENGTH", 25);
-    define("CITY_LENGTH", 25);
-    define("PROVINCE_LENGTH", 25);
-    define("POSTALCODE_LENGTH", 7);
-    define("USERNAME_LENGTH", 12);
-    define("PASSWORD_LENGTH",30);
+ define("LENGHTOFFIRSTNAME ",20);
+    define("LENGHTOFLASTNAME ",20);
+    define("LENGHTOFADDRESS ", 25);
+    define("LENGHTOFCITY ", 25);
+    define("LENGHTOFPROVINCE ", 25);
+    define("LENGHTOFPOSTALCODE ", 7);
+    define("LENGHTOFUSERNAME ", 12);
+    define("LENGHTOFPASSWORD ",30);
 
 class customer1 {
    
@@ -45,9 +45,9 @@ function getFirstName()
     }
     function setFirstName($newFirstName)
     {
-        if(mb_strlen($newFirstName) > FIRSTNAME_LENGTH)
+        if(mb_strlen($newFirstName) > LENGHTOFFIRSTNAME )
         {
-            return "First Name does not have more than ".FIRSTNAME_LENGTH." alphabets";
+            return "First Name does not have more than ".LENGHTOFFIRSTNAME ." alphabets";
         }
         else if(mb_strlen($newFirstName) == 0)
         {
@@ -66,9 +66,9 @@ function getFirstName()
     }
     function setLastName($newLastName)
     {
-        if(mb_strlen($newLastName) > LASTNAME_LENGTH)
+        if(mb_strlen($newLastName) > LENGHTOFLASTNAME )
         {
-            return "Last Name does not have more than ".LASTNAME_LENGTH." alphabets";
+            return "Last Name does not have more than ".LENGHTOFLASTNAME ." alphabets";
         }
         else if(mb_strlen($newLastName) == 0)
         {
@@ -87,9 +87,9 @@ function getFirstName()
     }
     function setAddress($newAddress)
     {
-        if(mb_strlen($newAddress) > ADDRESS_LENGTH)
+        if(mb_strlen($newAddress) > LENGHTOFADDRESS )
         {
-            return "Address does not have more than ".ADDRESS_LENGTH." alphabets";
+            return "Address does not have more than ".LENGHTOFADDRESS ." alphabets";
         }
         else if(mb_strlen($newAddress) == 0)
         {
@@ -108,9 +108,9 @@ function getFirstName()
     }
     function setCity($newCity)
     {
-        if(mb_strlen($newCity) > CITY_LENGTH)
+        if(mb_strlen($newCity) > LENGHTOFCITY )
         {
-            return "City does not have  more than ".CITY_LENGTH." alphabets";
+            return "City does not have  more than ".LENGHTOFCITY ." alphabets";
         }
         else if(mb_strlen($newCity) == 0)
         {
@@ -128,9 +128,9 @@ function getFirstName()
     }
     function setProvince($newProvince)
     {
-        if(mb_strlen($newProvince) > PROVINCE_LENGTH)
+        if(mb_strlen($newProvince) > LENGHTOFPROVINCE )
         {
-            return "Province does not have more than ".PROVINCE_LENGTH." alphabets";
+            return "Province does not have more than ".LENGHTOFPROVINCE ." alphabets";
         }
         else if(mb_strlen($newProvince) == 0)
         {
@@ -149,9 +149,9 @@ function getFirstName()
     }
     function setPostalCode($newPostalCode)
     {
-        if(mb_strlen($newPostalCode) > POSTALCODE_LENGTH)
+        if(mb_strlen($newPostalCode) > LENGHTOFPOSTALCODE )
         {
-            return "Postal  does not have more than ".POSTALCODE_LENGTH." alphabets";
+            return "Postal  does not have more than ".LENGHTOFPOSTALCODE ." alphabets";
         }
         else if(mb_strlen($newPostalCode) == 0)
         {
@@ -170,9 +170,9 @@ function getFirstName()
     }
     function setUserName($newUserName)
     {
-        if(mb_strlen($newUserName) > USERNAME_LENGTH)
+        if(mb_strlen($newUserName) > LENGHTOFUSERNAME )
         {
-            return "UserName does nor have more than ".USERNAME_LENGTH." alphabets";
+            return "UserName does nor have more than ".LENGHTOFUSERNAME ." alphabets";
         }
         else if(mb_strlen($newUserName) == 0)
         {
@@ -191,9 +191,9 @@ function getFirstName()
     }
     function setPassword($newPassword)
     {
-        if(mb_strlen($newPassword) > PASSWORD_LENGTH)
+        if(mb_strlen($newPassword) > LENGHTOFPASSWORD )
         {
-            return "Password does not have more than ".PASSWORD_LENGTH." alphabets";
+            return "Password does not have more than ".LENGHTOFPASSWORD ." alphabets";
         }
         else if(mb_strlen($newPassword) == 0)
         {

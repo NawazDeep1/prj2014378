@@ -1,8 +1,8 @@
 <?php
 require_once 'DatabaseConnection.php';
 
-define("PRODUCTCODE_VALUE",20);
- define("DESCRIPTION_VALUE",100);
+define("LENGHTOFPRODUCTCODE",20);
+define("LENGHTOFDESCRIPTION",100);
 
 class product1 {
    private $productcode = '';

@@ -1,8 +1,8 @@
 <?php
  include_once 'DatabaseConnection.php';
-    define("QUANTITY_VALUE",99);
-    define("QUANTITYMIN_VALUE",1);
-    define("COMMENTS_LENGTH",200);
+    define("MAXLENGHTOFQUANTITY",99);
+    define("MINLENGHTOFQUANTITY",1);
+    define("LENGHTOFCOMMENTS",200);
 
 class purchase1 {
     //put your code here
@@ -58,13 +58,13 @@ class purchase1 {
         {
             if(is_numeric($quantity) && !is_float($quantity)) 
             {
-                 if($quantity > QUANTITY_VALUE)  
+                 if($quantity > MAXLENGHTOFQUANTITY)  
                 {   
-                    return "It does not have more than ".QUANTITY_VALUE;
+                    return "It does not have more than ".MAXLENGHTOFQUANTITY;
                 }
-                else if($quantity < QUANTITYMIN_VALUE) 
+                else if($quantity < MINLENGHTOFQUANTITY) 
                 {
-                        return "It does not have less than ".QUANTITYMIN_VALUE;
+                        return "It does not have less than ".MINLENGHTOFQUANTITY;
                 }
             }
             else
@@ -87,9 +87,9 @@ class purchase1 {
     }
     function setComments($comments)
     {
-        if(mb_strlen($comments) > COMMENTS_LENGTH)
+        if(mb_strlen($comments) > LENGHTOFCOMMENTS)
         {
-            return "Comments does not have more than ".COMMENTS_LENGTH;
+            return "Comments does not have more than ".LENGHTOFCOMMENTS;
         }
         else
         {
