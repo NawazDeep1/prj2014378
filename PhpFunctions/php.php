@@ -47,6 +47,10 @@ define("COLLECTIONCLASS", "Collection.php");
 //defining data connection
 define("DATABASEFILE","DataConnection.php");
 
+//defing javascript file
+define("JSFOLDER","JScript/");
+define("JSFILE",JSFOLDER. "javascriptfile.js");
+
 
 $items= array(COMPUTER_1, COMPUTER_2, COMPUTER_3, COMPUTER_4, COMPUTER_5);
 
