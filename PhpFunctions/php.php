@@ -39,7 +39,7 @@ define("CLASSPURCHASE1",PHPFUNCTIONFOLDER."purchase1.php");
 define("CLASSPURCHASE2",PHPFUNCTIONFOLDER."purchase1.php");
 define("PURCHASES","purchasespage.php");
 define("BUY","buypage.php");
-
+define("DATABASEFILE","DataConnection.php");
 $items= array(COMPUTER_1, COMPUTER_2, COMPUTER_3, COMPUTER_4, COMPUTER_5);
 
 function pageHeader($heading)
