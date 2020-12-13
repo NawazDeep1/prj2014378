@@ -107,8 +107,28 @@ li
 {
     color: black;
 }
+
 .cheatSheet
 {
     text-align: center;
-  
+}
+
+.Signin
+{
+    text-align: center;
+}
+.Signin a
+{
+    color: black;
+    font-weight: bold;
+}
+.Signin a:hover
+{
+    opacity: 0.5;
+}
+.Error
+{
+    margin: 10px 0 0 0;
+    text-align: center;
+    font-weight: bold;
 }

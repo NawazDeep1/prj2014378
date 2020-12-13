@@ -17,5 +17,10 @@
     {
         echo '<br><img src="'.$items[0].'" class="product"></img>';
     }
-    Footer();
-?>
+  ?>
+<div class ="CheatSheet">
+    <h2><a href ="<?php echo CHEAT;?>" download>Download Cheat Sheet</a></h2>
+</div>
+<?php
+  Footer();
+  ?>

@@ -1,19 +1,19 @@
 <?php
     include_once 'PhpFunctions/php.php';
     error_reporting(0); 
-    function Errormanager($errornum, $errorStr, $errorfile, $errorline, $errortext)
+    function Errormanager($Errornum, $ErrorStr, $Errorfile, $Errorline, $Errortext)
     {
         $debuging = true;
         if($debuging)
         {
-            echo "Error : ".$errorStr."<br>"; 
-            echo "FileName : ".$errorfile."<br>";
-            echo "FileLine : ".$errorline."<br>";
+            echo "Error : ".$ErrorStr."<br>"; 
+            echo "FileLine : ".$Errorline."<br>";
+            echo "FileName : ".$Errorfile."<br>";
         }
         $dateTime = date("Y-m-d g:i:s:v a");
-        $error = array($errorStr, $errorfile, $errorline, $dateTime);
-        contents(ERROR, json_encode($error)."\r\n",FILE_APPEND);
-        die("PHP ENDED");
+        $Error = array($ErrorStr, $Errorfile, $Errorline, $dateTime);
+        contents(ERROR, json_encode($Error)."\r\n",FILE_APPEND);
+        die("PROGRAM ENDED");
     }
     function Exceptionsmanager($exception)
     {
@@ -24,6 +24,7 @@
             echo "FileName : ".$exception->getFile()."<br>";
             echo "FileLine : ".$exception->getLine()."<br>";
         }
+        date_default_timezone_set('America/Toronto');
         $dateTime = date("Y-m-d g:i:s:v a");
         $excpArray = array($exception->getMessage(), $exception->getFile(), $exception->getLine(),$dateTime);
         contents(EXCEPTION, json_encode($excpArray)."\r\n",FILE_APPEND);
@@ -32,10 +33,18 @@
     set_error_handler("ErrorManager");
     set_exception_handler("Exceptionsmanager");
     
-    pageHeader("Orders");
+    if(isset($_GET['command']) && htmlspecialchars($_GET['command']=="print"))  #if in the link, command = print then it will change the background-color
+    {
+        pageHeader("Orders", "clsBody");
+    }
+    else    #if method get for command = print is not there, than the background-color will remain the same as other pages
+    {
+        pageHeader("Orders","");
+    }
+    #calling the navigationMenu() to show the Menu
     Menu();
     ?>
-<div class="OrdersContainer">
+<div class="Orders">
     <!--Creating the table to show the purchases data-->
     <table class="tblOrders" border="1">
     <tr>
@@ -100,10 +109,6 @@
         }
     ?>
 </table>
-</div>
-<div class="cheatSheet">
-    <h3><a href="<?php echo CHEAT;?>" download>Click to Download Cheat Sheet</a></h3>
-</div>
 <?php
     Footer();  
 ?>

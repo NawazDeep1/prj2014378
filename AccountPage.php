@@ -38,7 +38,7 @@ if(isset($_SESSION['user']))
     }
     else
     {
-        ?><h3 style="text-align: center">Login</h3><?php
+        SignIn();
         Footer();
         die();
     }
@@ -85,42 +85,43 @@ if(isset($_SESSION['user']))
 ?>
     <form method="POST">
         <p>
-            <label>First Name:</label>
-            <input type="text" name ="firstname" value="<?php echo $firstname; ?>"><span><?php echo $firstnameErrorMsg; ?></span>
+            <label>First Name:<span class="req">*</span></label>
+            <input type="text" name ="firstname" value="<?php echo $firstname; ?>"><span class="validation"><?php echo $firstnameErrorMsg; ?></span>
         </p>
         <p>
-            <label>Last Name:</label>
-            <input type="text" name ="lastname" value="<?php echo $lastname; ?>"><span><?php echo $lastnameErrorMsg; ?></span>
+            <label>Last Name:<span class="req">*</span></label>
+            <input type="text" name ="lastname" value="<?php echo $lastname; ?>"><span class="validation"><?php echo $lastnameErrorMsg; ?></span>
         </p>
         <p>
-            <label>Address:</label>
-            <input type="text" name ="address" value="<?php echo $address; ?>"><span><?php echo $addressErrorMsg; ?></span>
+            <label>Address:<span class="req">*</span></label>
+            <input type="text" name ="address" value="<?php echo $address; ?>"><span class="validation"><?php echo $addressErrorMsg; ?></span>
         </p>
         <p>
-            <label>City:</label>
-            <input type="text" name ="city" value="<?php echo $city; ?>"><span><?php echo $cityErrorMsg; ?></span>
+            <label>City:<span class="req">*</span></label>
+            <input type="text" name ="city" value="<?php echo $city; ?>"><span class="validation"><?php echo $cityErrorMsg; ?></span>
         </p>
         <p>
-            <label>Province:</label>
-            <input type="text" name ="province" value="<?php echo $province; ?>"><span><?php echo $provinceErrorMsg; ?></span>
+            <label>Province:<span class="req">*</span></label>
+            <input type="text" name ="province" value="<?php echo $province; ?>"><span class="validation"><?php echo $provinceErrorMsg; ?></span>
         </p>
         <p>
-            <label>Postal Code:</label>
-            <input type="text" name ="postalcode" value="<?php echo $postalcode; ?>"><span><?php echo $postalcodeErrorMsg; ?></span>
+            <label>Postal Code:<span class="req">*</span></label>
+            <input type="text" name ="postalcode" value="<?php echo $postalcode; ?>"><span class="validation"><?php echo $postalcodeErrorMsg; ?></span>
         </p>
         <p>
-            <label>Username:</label>
-            <input type="text" name ="username" value="<?php echo $username; ?>"><span><?php echo $usernameErrorMsg; ?></span>
+            <label>Username:<span class="req">*</span></label>
+            <input type="text" name ="username" value="<?php echo $username; ?>"><span class="validation"><?php echo $usernameErrorMsg; ?></span>
         </p>
         <p>
-            <label>Password:</label>
-            <input type="password" name ="password"><span><?php echo $passwordErrorMsg; ?></span>
+            <label>Password:<span class="req">*</span></label>
+            <input type="password" name ="password"><span class="validation"><?php echo $passwordErrorMsg; ?></span>
         </p>
         <p>
             <input type="submit" value="Update Info" name="submit" class="button"/>
         </p>
     </form>
 <?php
+    SignOut();
     pageFooter();
 ?>
 

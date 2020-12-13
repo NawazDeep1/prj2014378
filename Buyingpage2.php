@@ -52,8 +52,8 @@ if(isset($_SESSION['user']))
     }
     else
     {
-        ?><h3 style="text-align: center">Login</h3><?php
-                Footer();
+        SignIn();
+         Footer();
         die();
     }
 ?>
@@ -83,6 +83,7 @@ if(isset($_SESSION['user']))
     </p>
 </form>
 <?php
+    SignOut();
 Footer();
 ?>
     
