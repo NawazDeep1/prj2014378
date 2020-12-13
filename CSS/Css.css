@@ -57,15 +57,14 @@ li
     text-align: center;
 }
 
-/*------For Buy--------*/
-.buy
-{
-    width: 80%;
-    text-align: center;
-    margin: auto;
-}
 
 .req
+{
+    color: red;
+    text-align: center;
+}
+
+.validation
 {
     color: red;
 }
@@ -78,12 +77,12 @@ li
     width : 80%;
     margin: 20px auto 0 auto;
 }
-.tableOrd
+.tbl
 {
     width: 100%;
     text-align: center;
 }
-.tableOrd th
+.tbl th
 {
     font-size: 18px;
 }
@@ -131,4 +130,32 @@ li
     margin: 10px 0 0 0;
     text-align: center;
     font-weight: bold;
+}
+.purchases
+{
+    text-align: center;
+     margin-top: 20px;
+}
+
+
+.updateInfo
+{
+    text-align: center;
+}
+
+/*CSS for Buy.php*/
+.buyInfo
+{
+    text-align: center;
+}
+
+/*CSS for Register.php*/
+.registerInfo
+{
+    text-align: center;
+}
+
+.ErEx
+{
+    text-align: center;
 }

@@ -589,6 +589,443 @@ $cars = array("Volvo", "BMW", "Toyota");
 echo count($cars);
 ?>
 
+•	Validation
+ the $_SERVER["PHP_SELF"] sends the submitted form data to the page itself, instead of jumping to a different page. This way, the user will get error messages on the same page as the form.
+Validate Form Data With PHP
+The first thing we will do is to pass all variables through PHP's htmlspecialchars() function.
+When we use the htmlspecialchars() function; then if a user tries to submit the following in a text field:
+<script>location.href('http://www.hacked.com')</script>
+- this would not be executed, because it would be saved as HTML escaped code, like this:
+&lt;script&gt;location.href('http://www.hacked.com')&lt;/script&gt;
+The code is now safe to be displayed on a page or inside an e-mail.
+We will also do two more things when the user submits the form:
+1.	Strip unnecessary characters (extra space, tab, newline) from the user input data (with the PHP trim() function)
+2.	Remove backslashes (\) from the user input data (with the PHP stripslashes() function)
+The next step is to create a function that will do all the checking for us (which is much more convenient than writing the same code over and over again).
+We will name the function test_input().
+Now, we can check each $_POST variable with the test_input() function, and the script looks like this:
+Example:
+<?php
+$name = $email = $gender = $comment = $website = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
+  $email = test_input($_POST["email"]);
+  $website = test_input($_POST["website"]);
+  $comment = test_input($_POST["comment"]);
+  $gender = test_input($_POST["gender"]);
+}
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+Notice that at the start of the script, we check whether the form has been submitted using $_SERVER["REQUEST_METHOD"]. If the REQUEST_METHOD is POST, then the form has been submitted - and it should be validated. If it has not been submitted, skip the validation and display a blank form.
+
+The PHP Date() Function
+The PHP date() function formats a timestamp to a more readable date and time.
+Syntax
+date(format,timestamp)
+Get a Date
+The required format parameter of the date() function specifies how to format the date (or time).
+Here are some characters that are commonly used for dates:
+•	d - Represents the day of the month (01 to 31)
+•	m - Represents a month (01 to 12)
+•	Y - Represents a year (in four digits)
+•	l (lowercase 'L') - Represents the day of the week
+Other characters, like"/", ".", or "-" can also be inserted between the characters to add additional formatting.
+The example below formats today's date in three different ways:
+Example
+<?php
+echo "Today is " . date("Y/m/d") . "<br>";
+echo "Today is " . date("Y.m.d") . "<br>";
+echo "Today is " . date("Y-m-d") . "<br>";
+echo "Today is " . date("l");
+?>
+Get Your Time Zone
+If the time you got back from the code is not correct, it's probably because your server is in another country or set up for a different timezone.
+So, if you need the time to be correct according to a specific location, you can set the timezone you want to use.
+The example below sets the timezone to "America/New_York", then outputs the current time in the specified format:
+Example
+<?php
+date_default_timezone_set("America/New_York");
+echo "The time is " . date("h:i:sa");
+?>
+
+PHP Session?
+When you work with an application, you open it, do some changes, and then you close it. This is much like a Session. The computer knows who you are. It knows when you start the application and when you end. But on the internet there is one problem: the web server does not know who you are or what you do, because the HTTP address doesn't maintain state.
+Session variables solve this problem by storing user information to be used across multiple pages (e.g. username, favorite color, etc). By default, session variables last until the user closes the browser.
+Start a PHP Session
+A session is started with the session_start() function.
+Session variables are set with the PHP global variable: $_SESSION.
+Now, let's create a new page called "demo_session1.php". In this page, we start a new PHP session and set some session variables:
+Example
+<?php
+// Start the session
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+// Set session variables
+$_SESSION["favcolor"] = "green";
+$_SESSION["favanimal"] = "cat";
+echo "Session variables are set.";
+?>
+
+</body>
+</html>
+Note: The session_start() function must be the very first thing in your document. Before any HTML tags.
+
+Destroy a PHP Session
+To remove all global session variables and destroy the session, use session_unset() and session_destroy():
+Example
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+// remove all session variables
+session_unset();
+
+// destroy the session
+session_destroy();
+?>
+
+</body>
+</html>
+What is an Exception?
+An exception is an object that describes an error or unexpected behaviour of a PHP script.
+Exceptions are thrown by many PHP functions and classes.
+User defined functions and classes can also throw exceptions.
+Exceptions are a good way to stop a function when it comes across data that it cannot use.
+________________________________________
+Throwing an Exception
+The throw statement allows a user defined function or method to throw an exception. When an exception is thrown, the code following it will not be executed.
+If an exception is not caught, a fatal error will occur with an "Uncaught Exception" message.
+Lets try to throw an exception without catching it:
+Example
+<?php
+function divide($dividend, $divisor) {
+  if($divisor == 0) {
+    throw new Exception("Division by zero");
+  }
+  return $dividend / $divisor;
+}
+
+echo divide(5, 0);
+?>
+The try...catch Statement
+To avoid the error from the example above, we can use the try...catch statement to catch exceptions and continue the process.
+Syntax
+try {
+  code that can throw exceptions
+} catch(Exception $e) {
+  code that runs when an exception is caught
+}
+Example
+<?php
+function divide($dividend, $divisor) {
+  if($divisor == 0) {
+    throw new Exception("Division by zero");
+  }
+  return $dividend / $divisor;
+}
+
+try {
+  echo divide(5, 0);
+} catch(Exception $e) {
+  echo "Unable to divide.";
+}
+?>
+The catch block indicates what type of exception should be caught and the name of the variable which can be used to access the exception. In the example above, the type of exception is Exception and the variable name is $e.
+OOP Case
+Let's assume we have a class named Fruit. A Fruit can have properties like name, color, weight, etc. We can define variables like $name, $color, and $weight to hold the values of these properties.
+When the individual objects (apple, banana, etc.) are created, they inherit all the properties and behaviors from the class, but each object will have different values for the properties.
+________________________________________
+Define a Class
+A class is defined by using the class keyword, followed by the name of the class and a pair of curly braces ({}). All its properties and methods go inside the braces:
+Example
+<?php
+class Fruit {
+  // Properties
+  public $name;
+  public $color;
+
+  // Methods
+  function set_name($name) {
+    $this->name = $name;
+  }
+  function get_name() {
+    return $this->name;
+  }
+}
+?>
+Define Objects
+Classes are nothing without objects! We can create multiple objects from a class. Each object has all the properties and methods defined in the class, but they will have different property values.
+Objects of a class is created using the new keyword.
+In the example below, $apple and $banana are instances of the class Fruit:
+Example
+<?php
+class Fruit {
+  // Properties
+  public $name;
+  public $color;
+
+  // Methods
+  function set_name($name) {
+    $this->name = $name;
+  }
+  function get_name() {
+    return $this->name;
+  }
+}
+
+$apple = new Fruit();
+$banana = new Fruit();
+$apple->set_name('Apple');
+$banana->set_name('Banana');
+
+echo $apple->get_name();
+echo "<br>";
+echo $banana->get_name();
+?>
+Class Constants
+Constants cannot be changed once it is declared.
+Class constants can be useful if you need to define some constant data within a class.
+A class constant is declared inside a class with the const keyword.
+Class constants are case-sensitive. However, it is recommended to name the constants in all uppercase letters.
+We can access a constant from outside the class by using the class name followed by the scope resolution operator (::) followed by the constant name, like here:
+Example
+<?php
+class Goodbye {
+  const LEAVING_MESSAGE = "Thank you ";
+}
+
+echo Goodbye::LEAVING_MESSAGE;
+?>
+
+
+PHP and JSON
+PHP has some built-in functions to handle JSON.
+First, we will look at the following two functions:
+•	json_encode()
+•	json_decode()
+________________________________________
+PHP - json_encode()
+The json_encode() function is used to encode a value to JSON format.
+Example
+This example shows how to encode an associative array into a JSON object:
+<?php
+$age = array("Peter"=>35, "Ben"=>37, "Joe"=>43);
+
+echo json_encode($age);
+?>
+json_decode()
+The json_decode() function is used to decode a JSON object into a PHP object or an associative array.
+Example
+This example decodes JSON data into a PHP object:
+<?php
+$jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+
+var_dump(json_decode($jsonobj));
+?>
+The json_decode() function returns an object by default. The json_decode() function has a second parameter, and when set to true, JSON objects are decoded into associative arrays.
+
+Create a MySQL Database Using MySQLi and PDO
+The CREATE DATABASE statement is used to create a database in MySQL.
+The following examples create a database named "myDB":
+Example (MySQLi Object-oriented)
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Create database
+$sql = "CREATE DATABASE myDB";
+if ($conn->query($sql) === TRUE) {
+  echo "Database created successfully";
+} else {
+  echo "Error creating database: " . $conn->error;
+}
+
+$conn->close();
+?>
+
+Example (PDO)
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+
+try {
+  $conn = new PDO("mysql:host=$servername", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $sql = "CREATE DATABASE myDBPDO";
+  // use exec() because no results are returned
+  $conn->exec($sql);
+  echo "Database created successfully<br>";
+} catch(PDOException $e) {
+  echo $sql . "<br>" . $e->getMessage();
+}
+
+$conn = null;
+?>
+
+
+Create a MySQL Table Using MySQLi and PDO
+The CREATE TABLE statement is used to create a table in MySQL.
+We will create a table named "MyGuests", with five columns: "id", "firstname", "lastname", "email" and "reg_date":
+CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
+
+
+Example (MySQLi Object-oriented)
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDB";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// sql to create table
+$sql = "CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Table MyGuests created successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+$conn->close();
+?>
+
+
+Example (PDO)
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDBPDO";
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  // sql to create table
+  $sql = "CREATE TABLE MyGuests (
+  id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  firstname VARCHAR(30) NOT NULL,
+  lastname VARCHAR(30) NOT NULL,
+  email VARCHAR(50),
+  reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  )";
+
+  // use exec() because no results are returned
+  $conn->exec($sql);
+  echo "Table MyGuests created successfully";
+} catch(PDOException $e) {
+  echo $sql . "<br>" . $e->getMessage();
+}
+
+$conn = null;
+?>
+Insert Data Into MySQL Using MySQLi and PDO
+After a database and a table have been created, we can start adding data in them.
+Here are some syntax rules to follow:
+•	The SQL query must be quoted in PHP
+•	String values inside the SQL query must be quoted
+•	Numeric values must not be quoted
+•	The word NULL must not be quoted
+The INSERT INTO statement is used to add new records to a MySQL table:
+INSERT INTO table_name (column1, column2, column3,...)
+VALUES (value1, value2, value3,...)
+
+(MySQLi Object-oriented)
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDB";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('John', 'Doe', 'john@example.com')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+?>
+
+(PDO)
+<?php
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "myDBPDO";
+
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $sql = "INSERT INTO MyGuests (firstname, lastname, email)
+  VALUES ('John', 'Doe', 'john@example.com')";
+  // use exec() because no results are returned
+  $conn->exec($sql);
+  echo "New record created successfully";
+} catch(PDOException $e) {
+  echo $sql . "<br>" . $e->getMessage();
+}
+
+$conn = null;
+?>
+
+
+
+
+
 
 
 

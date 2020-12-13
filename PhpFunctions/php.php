@@ -14,7 +14,7 @@ define("ORDER","Orderspage.php");
 define("REGISTER","RegisterPage.php");
 define("ACCOUNT","AccountPage.php");
 
-// defining the products in image folder
+// defining the products in folder
 define("COMPUTER_1",IMAGESFOLDER."asus.jpg");
 define("COMPUTER_2",IMAGESFOLDER."dell.jpg");
 define("COMPUTER_3",IMAGESFOLDER."lenovo.jpg");

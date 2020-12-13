@@ -37,16 +37,14 @@
     {
         pageHeader("Orders", "clsBody");
     }
-    else    #if method get for command = print is not there, than the background-color will remain the same as other pages
+    else   
     {
         pageHeader("Orders","");
     }
-    #calling the navigationMenu() to show the Menu
     Menu();
     ?>
 <div class="Orders">
-    <!--Creating the table to show the purchases data-->
-    <table class="tblOrders" border="1">
+    <table class="tbl" border="1">
     <tr>
         <th>Product ID</th>
         <th>First Name</th>

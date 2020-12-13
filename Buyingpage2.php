@@ -5,7 +5,7 @@
     include_once CLASSPURCHASE1;
     pageHeader("New Buy", "");
     Menu();
-    sessionStart();
+    session_start();
     $comments = '';
     $productCode = '';
     $commentsErrorMsg = '';
@@ -57,9 +57,11 @@ if(isset($_SESSION['user']))
         die();
     }
 ?>
+<h3 class="req">* = Mandatory</h3>
+
 <form method="POST">
     <p>
-        <label>Product Code:</label>
+        <label>Product Code:<span class="req">*</span></label>
         <select name="productCode">
         <?php
         foreach($products->items as $product)
@@ -75,7 +77,7 @@ if(isset($_SESSION['user']))
         <input type="text" name="comments" value="<?php echo $comments;?>"/> <span class="validation"><?php echo $commentsErrorMessage;?></span>
     </p>
     <p>
-        <label>Quantity<span class="required">*</span>:  </label>
+        <label>Quantity<span class="req">*</span>:  </label>
         <input type="text" name="quantity" value="<?php echo $quantity;?>"/> <span class="validation"><?php echo $quantityErrorMessage;?></span>
     </p>
     <p>

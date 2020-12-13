@@ -3,7 +3,7 @@ include_once 'PhpFunction/php.php';
 include_once CLASSCUSTOMER1;
 pageHeader("Account","");
 Menu();
-sessionStart();
+session_start();
 $firstname = '';
 $lastname = '';
 $address = '';

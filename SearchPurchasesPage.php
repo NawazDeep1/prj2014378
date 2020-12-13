@@ -3,7 +3,7 @@
   include_once CLASSCUSTOMER1;
   include_once CLASSPRODUCT1;
   include_once CLASSPURCHASE2;
-  sessionStart();
+  session_start();
   if(isset($_POST['search']))
   {
     $search = htmlspecialchars($_POST['search']);
