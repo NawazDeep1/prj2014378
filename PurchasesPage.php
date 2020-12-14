@@ -1,14 +1,25 @@
 <?php
- include_once 'PhpFunctions/phh.php';
- pageHeader("Purchases", "");
+//including file on the webpage 
+include_once 'PhpFunctions/php.php';
+//functions
+ pageHeader("Purchases");
  Menu();
  session_start();
- if(isset($_SESSION['user']))
+ if(isset($_SESSION['admin']))
  {
-     
+    if(isset($_POST['delete']))
+    {
+        $purchase = new purchase();
+         if($purchase->Delete($_POST['purchaseUUID']))
+         {
+            echo "<h3 class='deleteInfo'>Purchase Deleted</h3>";
+         }
+    }     
  }
  else
  {
+     //functions
+     SignIn();
      Footer();
      die();
  }
@@ -22,8 +33,10 @@
     </p>
  </div>
  
-    <div id="searchResults">
+    <div id="Results">
     </div>
 <?php
+//functions
+    SignOut();
   Footer();
 ?>

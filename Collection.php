@@ -1,10 +1,15 @@
 <?php
 class Collection {
 public $Items = array();
+public function __construct() {
+    
+}
+//for add
 public function add($PK, $Item)
     {
         $this->Items[$PK] = $Item;
     }
+    //to remove
     public function remove($PK)
     {
         if(isset($this->Items[$PK]))

@@ -1,16 +1,20 @@
 <?php
-require_once ('DatabaseConnection.php');
- define("LENGHTOFFIRSTNAME ",20);
-    define("LENGHTOFLASTNAME ",20);
-    define("LENGHTOFADDRESS ", 25);
-    define("LENGHTOFCITY ", 25);
-    define("LENGHTOFPROVINCE ", 25);
-    define("LENGHTOFPOSTALCODE ", 7);
-    define("LENGHTOFUSERNAME ", 12);
-    define("LENGHTOFPASSWORD ",30);
+//including file on the webpage
+include_once 'PhpFunctions/php.php';
+include_once DATABASEFILE;
 
-class customer1 {
-   
+//defining variables
+    define("LENGTHOFFIRSTNAME",20);
+    define("LENGTHOFLASTNAME",20);
+    define("LENGTHOFADDRESS", 25);
+    define("LENGTHOFCITY", 25);
+    define("LENGTHOFPROVINCE", 25);
+    define("LENGTHOFPOSTALCODE", 7);
+    define("LENGTHOFUSERNAME", 12);
+    define("LENGTHOFPASSWORD",30);
+
+    //customer class
+class customer1 {   
     private $customer_uuid = '';
     private $firstname = '';
     private $lastname = '';
@@ -20,7 +24,6 @@ class customer1 {
     private $postalcode = '';
     private $username = '';
     private $password = '';
-
 
 public function __construct($customer_uuid = '', $firstname = '', $lastname = '', $address = '', $city = '', $province = '', $postalcode = '', $username = '', $password = '') 
     {
@@ -33,8 +36,7 @@ public function __construct($customer_uuid = '', $firstname = '', $lastname = ''
         $this->postalcode = $postalcode;
         $this->username = $username;
         $this->password = $password;
-    }
-    
+    }    
 function getCustomer_UUID()
     {
         return $this->customer_uuid;
@@ -45,9 +47,9 @@ function getFirstName()
     }
     function setFirstName($newFirstName)
     {
-        if(mb_strlen($newFirstName) > LENGHTOFFIRSTNAME )
+        if(mb_strlen($newFirstName) > LENGTHOFFIRSTNAME)
         {
-            return "First Name does not have more than ".LENGHTOFFIRSTNAME ." alphabets";
+            return "First Name does not have more than ".LENGTHOFFIRSTNAME." alphabets";
         }
         else if(mb_strlen($newFirstName) == 0)
         {
@@ -58,17 +60,16 @@ function getFirstName()
             $this->firstname = $newFirstName;
             return '';
         }
-    }
-    
+    }    
  function getLastName()
     {
         return $this->lastname;
     }
     function setLastName($newLastName)
     {
-        if(mb_strlen($newLastName) > LENGHTOFLASTNAME )
+        if(mb_strlen($newLastName) > LENGTHOFLASTNAME)
         {
-            return "Last Name does not have more than ".LENGHTOFLASTNAME ." alphabets";
+            return "Last Name does not have more than ".LENGTHOFLASTNAME." alphabets";
         }
         else if(mb_strlen($newLastName) == 0)
         {
@@ -79,17 +80,16 @@ function getFirstName()
             $this->lastname = $newLastName;
             return '';
         }
-    }
-    
+    }    
   function getAddress()
     {
         return $this->address;
     }
     function setAddress($newAddress)
     {
-        if(mb_strlen($newAddress) > LENGHTOFADDRESS )
+        if(mb_strlen($newAddress) > LENGTHOFADDRESS)
         {
-            return "Address does not have more than ".LENGHTOFADDRESS ." alphabets";
+            return "Address does not have more than ".LENGTHOFADDRESS." alphabets";
         }
         else if(mb_strlen($newAddress) == 0)
         {
@@ -108,9 +108,9 @@ function getFirstName()
     }
     function setCity($newCity)
     {
-        if(mb_strlen($newCity) > LENGHTOFCITY )
+        if(mb_strlen($newCity) > LENGTHOFCITY)
         {
-            return "City does not have  more than ".LENGHTOFCITY ." alphabets";
+            return "City does not have  more than ".LENGTHOFCITY." alphabets";
         }
         else if(mb_strlen($newCity) == 0)
         {
@@ -128,9 +128,9 @@ function getFirstName()
     }
     function setProvince($newProvince)
     {
-        if(mb_strlen($newProvince) > LENGHTOFPROVINCE )
+        if(mb_strlen($newProvince) > LENGTHOFPROVINCE)
         {
-            return "Province does not have more than ".LENGHTOFPROVINCE ." alphabets";
+            return "Province does not have more than ".LENGTHOFPROVINCE." alphabets";
         }
         else if(mb_strlen($newProvince) == 0)
         {
@@ -149,9 +149,9 @@ function getFirstName()
     }
     function setPostalCode($newPostalCode)
     {
-        if(mb_strlen($newPostalCode) > LENGHTOFPOSTALCODE )
+        if(mb_strlen($newPostalCode) > LENGTHOFPOSTALCODE)
         {
-            return "Postal  does not have more than ".LENGHTOFPOSTALCODE ." alphabets";
+            return "Postal  does not have more than ".LENGTHOFPOSTALCODE." alphabets";
         }
         else if(mb_strlen($newPostalCode) == 0)
         {
@@ -162,17 +162,16 @@ function getFirstName()
             $this->postalcode = $newPostalCode;
             return '';
         }
-    }
-    
-       function getUserName()
+    }    
+   function getUserName()
     {
         return $this->username;
     }
     function setUserName($newUserName)
     {
-        if(mb_strlen($newUserName) > LENGHTOFUSERNAME )
+        if(mb_strlen($newUserName) > LENGTHOFUSERNAME)
         {
-            return "UserName does nor have more than ".LENGHTOFUSERNAME ." alphabets";
+            return "UserName does nor have more than ".LENGTHOFUSERNAME." alphabets";
         }
         else if(mb_strlen($newUserName) == 0)
         {
@@ -183,17 +182,16 @@ function getFirstName()
             $this->username = $newUserName;
             return '';
         }
-    }
-    
-     function getPassword()
+    }    
+   function getPassword()
     {
         return $this->password;
     }
-    function setPassword($newPassword)
+   function setPassword($newPassword)
     {
-        if(mb_strlen($newPassword) > LENGHTOFPASSWORD )
+        if(mb_strlen($newPassword) > LENGTHOFPASSWORD)
         {
-            return "Password does not have more than ".LENGHTOFPASSWORD ." alphabets";
+            return "Password does not have more than ".LENGTHOFPASSWORD." alphabets";
         }
         else if(mb_strlen($newPassword) == 0)
         {
@@ -205,17 +203,12 @@ function getFirstName()
             return '';
         }
     }
-    
-    public function Load($customer_uuid)
+  public function Load($customer_uuid)
     {
-        global $conn;
-        
-        $sqlQuery = "CALL customer_load(:p_customer_uuid)";
-        
-        $PDO = $conn->prepare($sqlQuery);
-        
-        $PDO->bindParam(':p_customer_uuid', $customer_uuid);
-        
+        global $conn;        
+        $sqlQuery = "CALL customer_load(:p_customer_uuid)";        
+        $PDO = $conn->prepare($sqlQuery);        
+        $PDO->bindParam(':p_customer_uuid', $customer_uuid);        
         $PDO->execute();
         
         if($row = $PDO->fetch(PDO::FETCH_ASSOC))
@@ -231,10 +224,25 @@ function getFirstName()
             $this->password = $row['password'];
             return true;
         }
-        
+        $PDO->closeCursor();
+    }    
+    public function Login($username)
+    {
+        global $conn;
+        $sqlQuery = "CALL customer_login(:p_username)";        
+        $PDO = $conn->prepare($sqlQuery);        
+        $PDO->bindParam(':p_username', $username);        
+        $PDO->execute();        
+        if($row = $PDO->fetch(PDO::FETCH_ASSOC))
+        {
+            $this->customer_uuid = $row['customer_uuid'];
+            $this->firstname = $row['firstname'];
+            $this->lastname = $row['lastname'];
+            return true;
+        }
+        $PDO->closeCursor();
     }
-    
-     public function Save()
+   public function Save()
     {
         global $conn;
         if($this->customer_uuid == '')
@@ -262,11 +270,11 @@ function getFirstName()
             {
                 return false;
             }
+            $PDO->closeCursor();
         }
         else
         {
-            $sqlQuery = "CALL customer_update(:p_customer_uuid, :p_firstname, :p_lastname, :p_address, :p_city, :p_province, :p_postalcode, :p_username, :p_password)";
-            
+            $sqlQuery = "CALL customer_update(:p_customer_uuid, :p_firstname, :p_lastname, :p_address, :p_city, :p_province, :p_postalcode, :p_username, :p_password)";            
             $PDO = $conn->prepare($sqlQuery);
             
             $PDO->bindParam(':p_customer_uuid', $this->customer_uuid);
@@ -282,38 +290,18 @@ function getFirstName()
 
             $PDO->execute();   
             return true;
+            $PDO->closeCursor();
         }
     }
-    public function Login($username)
-    {
-        global $con;
-        
-        $sqlQuery = "CALL customer_login(:p_username)";
-        
-        $PDO = $connection->prepare($sqlQuery);
-        
-        $PDO->bindParam(':p_username', $username);
-        
-        $PDO->execute();
-        
-        if($row = $PDO->fetch(PDO::FETCH_ASSOC))
-        {
-            $this->customer_uuid = $row['customer_uuid'];
-            $this->firstname = $row['firstname'];
-            $this->lastname = $row['lastname'];
-            return true;
-        }
-    }
-    
-     public function Delete()
+    public function Delete()
     {
         global $conn;
         $sqlQuery = "CALL customer_delete(:p_customer_uuid)";
-        $PDO= $conn->prepare($sqlQuery);
+        $PDO = $conn->prepare($sqlQuery);
         $PDO->bindParam(':p_customer_uuid', $this->customer_uuid);
-        
         $affectedRows = $PDO->execute();
-        
+        $PDO->closeCursor();
         return $affectedRows;
     }
+    
 }   

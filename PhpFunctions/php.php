@@ -1,5 +1,4 @@
-<?php
-    
+<?php    
 // first we have to define constants
 define("CSSFOLDER","CSS/");
 define("CSSFILE",CSSFOLDER."Css.css"); 
@@ -8,7 +7,6 @@ define("LOGO",IMAGESFOLDER."logo1.png");
 
 //defining the main pages 
 define("MAIN","Homepage.php");
-define("CART","BuyingsPage.php");
 define("ORDER","Orderspage.php");
 
 define("REGISTER","RegisterPage.php");
@@ -50,24 +48,29 @@ define("DATABASEFILE","DataConnection.php");
 define("JSFOLDER","JScript/");
 define("JSFILE",JSFOLDER. "javascriptfile.js");
 
-
+//items for sale
 $items= array(COMPUTER_1, COMPUTER_2, COMPUTER_3, COMPUTER_4, COMPUTER_5);
 
+//defining function for header
 function pageHeader($heading)
     {
     header('Expires: thu, 01, 1994 10:00:00 GMT');
     header('Cache-Control: no-cache');
     header('pragma: no-cache');
-    if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS']!= "ON")
+    
+    /*
+      if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS']!= "on")
+    
     {
-        header("Location: https://".$_SERVER['HTTPS_HOST'].$_SERVER["REQUEST_URI"]);
+        header("Location: https://".$_SERVER['HTTPS_HOST'].":4431".$_SERVER["REQUEST_URI"]);
     }
-        
+              ErrorHandler();*/
     ?>
+     
     <!DOCTYPE>
     <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8"> 
         <title><?php echo $heading;?></title>
         <link rel="stylesheet" type="text/css" href ="<?php echo CSSFILE;?>">
         <<script lang="javascript" type= "text/JScript"src="<?php echo javascriptfile;?>"></script>  
@@ -75,10 +78,10 @@ function pageHeader($heading)
     <body>
     <?php
      }
-     //HTML
+//defining function for footer
     function Footer()
     {
-        copyright();
+     copyright();
     ?>
     </body>
     </html>   
@@ -94,11 +97,10 @@ function pageHeader($heading)
     function Menu()
     {
         echo '<div class = "nav">';
-        Logo();
+        Logo(); //logo function excute here shows the logo on the top
         echo '<ul>';
         echo '<li><a href = "'.MAIN.'">Home</a></li>'; 
         echo '<li><a href = "'.REGISTER.'">Register</a></li>';
-        echo '<li><a href = "'.LOGIN.'">SignIn</a></li>';
         echo '<li><a href = "'.ACCOUNT.'">Account</a></li>';
         echo '<li><a href = "'.CART2.'">Buy</a></li>';
         echo '<li><a href = "'.PURCHASES.'">Purchases</a></li>';
@@ -106,22 +108,22 @@ function pageHeader($heading)
         echo '</ul>';
         echo '</div>';
     }
-    //copyright
+    //copyright funcction
     function copyright()
     {
         echo '<br><p class = "copyright">Copyright NAWAZ DEEP SINGH (2014378) '.date('Y').'</p>';
     }
-    
+    //defining function for signin
     function SignIn()
     {
+        //including file on the webpage
       include_once DATABASEFILE;
       include_once CLASSCUSTOMER1;
       $customer = new customer1();
       $usernameErrorMsg = '';
       $passwordErrorMsg = '';
 
-      if(isset($_POST['submit']))
-        {
+      if(isset($_POST['SigninSubmit']))
             $username = htmlspecialchars($_POST['username']);
             $password = htmlspecialchars($_POST['password']);
             if(mb_strlen($username) == 0)
@@ -132,7 +134,6 @@ function pageHeader($heading)
             {
                 $passwordErrorMsg = "Please Enter Password";
             }
-
             if($usernameErrorMsg=='' && $passwordErrorMsg=='')
             {
                 $dbPassword = '';
@@ -148,19 +149,19 @@ function pageHeader($heading)
                 $PDO->closeCursor();
                 if(password_verify($password, $dbPassword))
                 {
-                    if($customer->SignIn($username))
+                    if($customer->SignIn($username,$dbPassword))
                     {
-                    $_SESSION['user'] = $customer->getCustomerUUID();
+                    $_SESSION['admin'] = $customer->getCustomerUUID();
                      header('Location: '. $_SERVER['REQUEST_URI']);
                     }
                 }
                 else     
                 {
-                    unset($_SESSION['user']);
+                    unset($_SESSION['admin']);
                     echo "<h3 class = 'Error'>Please re-enter</h3><br>";
                 }
             }   
-        }
+        
         ?>
         <h3 style="text-align: center">Sign In</h3>
         <h4 class="req">* = Mandatory</h4>
@@ -174,22 +175,23 @@ function pageHeader($heading)
             <input type="password" name="password"><span class="validation"><?php echo $passwordErrorMsg; ?></span>
         </p>
         <p>
-            <input type="submit" name="submit" value="Login" class="button">
+            <input type="submit" name="SigninSubmit" value="Login" class="button">
         </p>
         </form>
         <p class="Signin">Must Sign Up <a href="<?php echo REGISTER; ?>">Sign up</a></p>
 
     <?php
     }
+    //defining function for signout
     function SignOut()
     {
         include_once CLASSCUSTOMER1;
         $customer = new customer1();
-        $customer->Load($_SESSION['user']);
+        $customer->Load($_SESSION['admin']);
         echo "<h3 style='text-align: center;'>Welcome ".$customer->getFirstName()." ".$customer->getLastName()."</h3>";
         if(isset($_POST['SignOut']))
         {
-            unset($_SESSION['user']);
+            unset($_SESSION['admin']);
             header('Location: '.$_SERVER['REQUEST_URI']);
         }
         ?>
@@ -200,13 +202,13 @@ function pageHeader($heading)
         </form>
         <?php
     }
-    function ErrorHandler()
+  function ErrorHandler()
     {
-        ErrorReporting(0); 
+      error_reporting(0); 
         function Errors($ErrorNum, $ErrorString, $ErrorFile, $ErrorLine, $ErrorContext)
         {
-            $debug = false;
-            if($debug)
+            $debuging = false;
+            if($debuging)
             {
                 echo "Error : ".$ErrorString."<br>"; 
                 echo "FileLine : ".$ErrorLine."<br>";
@@ -217,13 +219,13 @@ function pageHeader($heading)
             $Error = array($ErrorString, $ErrorFile, $ErrorLine,$dateTime);
             file_put_contents(ERROR, json_encode($Error)."\r\n",FILE_APPEND);
             echo "<h3 class ='ErEx'>PHP ended because of an Error</h3>";
-            pageFooter();
+            Footer();
             die();
         }
         function Expection($exception)
         {
-            $debug = false;
-            if($debug)
+            $debuging = false;
+            if($debuging)
             {
              echo "Error : ".$exception->getMessage()."<br>"; 
              echo "FileLine : ".$exception->getLine()."<br>";
@@ -235,7 +237,7 @@ function pageHeader($heading)
             $exceptionArray = array($exception->getMessage(), $exception->getFile(), $exception->getLine(),$dateTime);
             file_put_contents(EXCEPTION, json_encode($exceptionArray)."\r\n",FILE_APPEND);
             echo "<h3 class ='ErEx'>Program Ends</h3>";
-            pageFooter();
+            Footer();
             die();
         }
         set_Error_handler("Errors");

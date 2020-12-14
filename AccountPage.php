@@ -1,9 +1,13 @@
 <?php
-include_once 'PhpFunction/php.php';
+//including file on the webpage
+include_once 'PhpFunctions/php.php';
 include_once CLASSCUSTOMER1;
-pageHeader("Account","");
+//functions
+pageHeader("Account");
 Menu();
+//to start session
 session_start();
+//declaring variables
 $firstname = '';
 $lastname = '';
 $address = '';
@@ -21,11 +25,12 @@ $postalcodeErrorMsg = '';
 $usernameErrorMsg = '';
 $passwordErrorMsg = '';
     
-if(isset($_SESSION['user']))
+//session
+if(isset($_SESSION['admin']))
     {
         $customer = new customer1();
-        var_dump($_SESSION['user']);
-        if($customer->Load($_SESSION['user']))
+        var_dump($_SESSION['admin']);
+        if($customer->Load($_SESSION['admin']))
         {
         $firstname = $customer->getFirstName();
         $lastname = $customer->getLastName();
@@ -121,6 +126,7 @@ if(isset($_SESSION['user']))
         </p>
     </form>
 <?php
+//funcitons
     SignOut();
     pageFooter();
 ?>

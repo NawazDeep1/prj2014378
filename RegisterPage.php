@@ -1,8 +1,11 @@
 <?php
+//including file on th ewebpage 
 include_once ('PhpFunctions/php.php');
 include_once CLASSCUSTOMER1;
-pageHeader("Register", "");
+//functions
+pageHeader("Register");
 Menu();
+//declaring variables 
 $customer = new customer1();
 $firstname = '';
 $lastname = '';
@@ -21,6 +24,7 @@ $postalcodeErrorMsg = '';
 $usernameErrorMsg = '';
 $passwordErrorMsg = '';
    
+//definging
 if(isset($_POST['submit']))
     {
         $firstname = htmlspecialchars($_POST['firstname']);
@@ -52,6 +56,7 @@ if(isset($_POST['submit']))
                 $postalcode = '';
                 $username = '';
                 $password = '';
+                header('Location: '.CART2);
             }
             else
             {
@@ -100,5 +105,7 @@ if(isset($_POST['submit']))
         </p>
     </form>
 <?php
+//footer functions
+
     Footer();
 ?>

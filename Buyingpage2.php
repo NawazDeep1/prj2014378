@@ -1,25 +1,29 @@
 <?php
- include_once 'PHP Functions/PHPFunctions.php';
+//including file on the webpage
+include_once 'PhpFunctions/php.php';
     include_once CLASSPRODUCT1;
     include_once CLASSPRODUCT2;
     include_once CLASSPURCHASE1;
-    pageHeader("New Buy", "");
-    Menu();
+    
+    pageHeader("Buy"); // header show on the top
+    Menu(); //menu fucntion show on the top
+//to start the session
     session_start();
+    //delaring variables
     $comments = '';
-    $productCode = '';
+    $productUUID = '';
     $commentsErrorMsg = '';
     $quantity = '';
     $quantityErrorMsg = '';
  
-if(isset($_SESSION['user']))
+if(isset($_SESSION['admin']))
     {
         $products = new product2();
         $purchase = new purchase1();
         echo $products->count();
         if(isset($_POST['submit']))
         {
-            $productCode = $_POST['productCode'];
+            $productUUID = $_POST['productUUID'];
             $comments = htmlspecialchars($_POST['comments']);
             $quantity = htmlspecialchars($_POST['quantity']);
             $commentsErrorMsg = $purchase->setComments($comments);
@@ -28,14 +32,15 @@ if(isset($_SESSION['user']))
             {
                 foreach($products->items as $product)
                 {
-                    if($product->getProductCode() == $productCode)
+                    if($product->getProductUUID() == $productUUID)
                     {
                         $purchase->setSalePrice($product->getPrice());
-                        echo $purchase->getSalePrice();
+                         $purchase->setTax();
+                        $purchase->setGrandTotal();
                     }
                 }
-                $purchase->setProductCode($productCode);
-                $purchase->setCustomerUUID($_SESSION['user']);
+                $purchase->setProductUUID($productUUID);
+                $purchase->setCustomerUUID($_SESSION['admin']);
                 
                 if($purchase->Save())
                 {
@@ -52,8 +57,8 @@ if(isset($_SESSION['user']))
     }
     else
     {
-        SignIn();
-         Footer();
+        SignIn();//sign in function
+         Footer();//footer function
         die();
     }
 ?>
@@ -61,12 +66,12 @@ if(isset($_SESSION['user']))
 
 <form method="POST">
     <p>
-        <label>Product Code:<span class="req">*</span></label>
-        <select name="productCode">
+        <label>Product UUID:<span class="req">*</span></label>
+        <select name="productUUID">
         <?php
         foreach($products->items as $product)
         {
-            ?><option value="<?php echo $product->getProductCode(); ?>"><?php echo $product->getProductCode()." - ".$product->getDescription();?></option>
+            ?><option value="<?php echo $product->getProductUUID(); ?>"><?php echo $product->getProductUUID()." - ".$product->getDescription();?></option>
         <?php
         }
         ?>
@@ -85,8 +90,8 @@ if(isset($_SESSION['user']))
     </p>
 </form>
 <?php
-    SignOut();
-Footer();
+    SignOut();//signout function
+Footer();// footer function
 ?>
     
    
